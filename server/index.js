@@ -5,8 +5,12 @@ const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const app = express();
 const router = require('./router');
-
+const mongoose = require('mongoose');
 // App Setup
+
+
+// DB Setup
+mongoose.connect('mongodb://localhost:auth/auth')
 
 app.use(morgan('combined'));
 app.use(bodyParser.json({ type: '*/*'}));
