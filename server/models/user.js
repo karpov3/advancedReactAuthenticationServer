@@ -13,11 +13,15 @@ const userSchema = new Schema({
 userSchema.pre('save', function(next){
   // get access to the user model
   const user = this;
+  // generate a salt then run callback
   bcrypt.genSalt(10, function(err, salt){
     if (err) { return next(err); }
 
-    bcrypt.has(user.password, salt, null, function(err, hash) {
+// hash (encrypt) our password using the salt
+    bcrypt.hash(user.password, salt, null, function(err, hash) {
       if (err) { return next(err); }
+
+      // overwrite plain text password with encrypted password
       user.password = hash;
       next();
     });

@@ -59,3 +59,4 @@ typings/
 
 # MongoDb
 mongodb/
+.config.js
