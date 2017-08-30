@@ -6,8 +6,15 @@ const ExtractJwt = require('passport-jwt').ExtractJwt;
 const LocalStategy = require('passport-local');
 
 const localOptions = { usernameField: 'email'};
-const localLogin = new LocalStategy(localOptions, function (email,password, done) {
+const localLogin = new LocalStategy(localOptions, function (email, password, done) {
+  // Verify this email and password, call done with the user
+  // it it is the correct email and password/otherwise, call done with false
+  User.findOne({email:email}, function(err, user){
+    if(err) { return done(err);}
+    if(!user) { return done(null, false); }
 
+    // compare password - is 'password' equal to user.password?
+  });
 });
 
 // Setup options for JWT Strategy
