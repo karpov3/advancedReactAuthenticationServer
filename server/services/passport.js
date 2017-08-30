@@ -48,4 +48,4 @@ const jwtLogin = new JwtStrategy(jwtOptions, function(payload, done) {
 
 // Tell passport to use this stategy
 passport.use(jwtLogin);
-passport.user(localLogin);
+passport.use(localLogin);
