@@ -9,7 +9,9 @@ const userSchema = new Schema({
 });
 
 // On save hook, encrypt password
+// Before saving a model, run this function
 userSchema.pre('save', function(next){
+  // get access to the user model
   const user = this;
   bcrypt.genSalt(10, function(err, salt){
     if (err) { return next(err); }
